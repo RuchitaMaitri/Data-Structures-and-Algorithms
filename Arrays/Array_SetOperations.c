@@ -15,10 +15,84 @@ void Display(struct Array Arr){
     printf("\n");
 }
 // set operations on Un-sorted arrays A and B
+// Union of sets A and B
+struct Array * Union(struct Array *arr1, struct Array *arr2){
+    int i,j,k,l;
+    j = 0;
+    k = 0; 
+    struct Array *arr3 = (struct Array *)malloc(sizeof(struct Array));
+    for(i = 0; i < arr1->length; i++){
+        arr3->A[k] = arr1->A[i];
+        k++;
+    }
+    int m = k;
+    while (j < arr2->length) {
+       l = 0;       
+        while(l < m){
+        if(arr2->A[j] == arr3->A[l]){
+            j++;
+            break;
+        }
+            l++;
+    }
+        arr3->A[k] = arr2->A[j];
+        k++;
+        j++;
+    }
+    arr3->length = k;
+    arr3-> size = 10;
+    return arr3;
+}
+
+//Intersection of sets A and B
+struct Array * Intersection(struct Array *arr1, struct Array *arr2){
+    int i,j,k;
+    i = 0;
+    k = 0; 
+    struct Array *arr3 = (struct Array *)malloc(sizeof(struct Array));
+    while (i < arr1->length) {   
+        j = 0;   
+        while(j < arr2->length){
+        if(arr1->A[i] != arr2->A[j]){
+            j++;
+        } else {
+            arr3->A[k] = arr2->A[j];
+            k++;
+            break;
+        }
+    }
+        i++;        
+    }
+    arr3->length = k;
+    arr3-> size = 10;
+    return arr3;
+}
+
+//Difference
+struct Array * Difference(struct Array *arr1, struct Array *arr2){
+    int i,j,k;
+    i = 0;
+    k = 0; 
+    struct Array *arr3 = (struct Array *)malloc(sizeof(struct Array));
+    while (i < arr1->length) {   
+        j = 0;   
+        while(j < arr2->length){
+        if(arr1->A[i] == arr2->A[j]){
+            i++;
+        }
+        j++;
+    }
+        arr3->A[k] = arr1->A[i];
+        i++;       
+        k++; 
+    }
+    arr3->length = k;
+    arr3-> size = 10;
+    return arr3;
+}
 
 
 // set operations on sorted arrays A and B
-
 //Union of two sets
 struct Array * UnionSort(struct Array *arr1, struct Array *arr2){
     int i,j,k;
@@ -56,7 +130,7 @@ struct Array * UnionSort(struct Array *arr1, struct Array *arr2){
     return arr3;
 }
 //Intersection of two sets
-struct Array * Intersection(struct Array *arr1, struct Array *arr2){
+struct Array * IntersectionSort(struct Array *arr1, struct Array *arr2){
     int i,j,k;
     i = 0;
     j = 0;
@@ -80,7 +154,7 @@ struct Array * Intersection(struct Array *arr1, struct Array *arr2){
 }
 
 //Difference between two sets A-B
-struct Array * Difference(struct Array *arr1, struct Array *arr2){
+struct Array * DifferenceSort(struct Array *arr1, struct Array *arr2){
     int i,j,k;
     i = 0;
     j = 0;
