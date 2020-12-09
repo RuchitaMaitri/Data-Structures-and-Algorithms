@@ -8,7 +8,7 @@ int main(){
     for(i=0; A[i] != '\0'; i++){
         A[i] = A[i] - 32;
     }
-    printf("%s \n", A);
+    printf("%s \n", A);     
 
     //upper case to lower case
      char B[] = "WELCOME";
