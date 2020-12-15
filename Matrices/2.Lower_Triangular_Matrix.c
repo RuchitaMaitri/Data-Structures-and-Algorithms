@@ -39,13 +39,48 @@ void Display(struct Matrix m){
     }
 }
 
+// This is using column major formula
+//Set function
+void SetC(struct Matrix *m, int i, int j, int x){
+    if(i >= j){
+        m->A[m->n*(j-1) - (j-2)*(j-1)/2 + i - j] = x;
+    }
+}
+
+//Get function
+int GetC(struct Matrix m, int i, int j){
+    if (i >= j){
+        return m.A[m.n*(j-1) - (j-2)*(j-1)/2 + i - j];            
+    }
+    else 
+        return 0;
+}
+
+//Display function 
+void DisplayC(struct Matrix m){
+    int i, j;
+    for(i = 1; i <= m.n; i++) {
+        for(j = 1; j <= m.n; j++){
+            if(i >= j){
+                printf("%d ", m.A[m.n*(j-1) - (j-2)*(j-1)/2 + i - j]);
+            }
+            else {
+                printf("0 ");
+            }
+        }
+        printf("\n");
+    }
+}
+
+
 int main(){
+    //validation for row major
     struct Matrix m;
     int i, j, x;
-    m.A = (int *)malloc(m.n * (m.n + 1)/2 * sizeof(int));
-
+    
     printf("Enter dimension:");
     scanf("%d", &m.n); 
+    m.A = (int *)malloc(m.n * (m.n + 1)/2 * sizeof(int));
 
     printf("Enter all elements:");
     for(i = 1; i <= m.n; i++){
@@ -55,5 +90,23 @@ int main(){
         }
     }
     printf("\n\n");
-     Display(m);
+    Display(m);
+
+    printf("\n\n");
+    //validation for column major
+    struct Matrix b;
+
+    printf("Enter dimension:");
+    scanf("%d", &b.n); 
+    b.A = (int *)malloc(b.n * (b.n + 1)/2 * sizeof(int));
+
+    printf("Enter all elements:");
+    for(i = 1; i <= b.n; i++){
+        for(j = 1; j <= b.n; j++){
+            scanf("%d", &x);
+            SetC(&b, i, j, x);
+        }
+    }
+    printf("\n\n");
+     Display(b);
 }
