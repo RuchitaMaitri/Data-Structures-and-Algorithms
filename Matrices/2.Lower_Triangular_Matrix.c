@@ -108,5 +108,5 @@ int main(){
         }
     }
     printf("\n\n");
-     Display(b);
+     DisplayC(b);
 }
