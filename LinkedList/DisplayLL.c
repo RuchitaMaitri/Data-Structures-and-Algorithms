@@ -81,12 +81,40 @@ int SumR(struct Node *p){
         return 0;
     }
 }
+
+//Max of all elements of linked list - Iterative
+int Max(struct Node *p){
+    int max = -2147483648;
+    while(p != NULL){
+        if(p->data > max){
+            max = p->data;
+            }
+        p = p->next;
+    }
+    return max;
+}
+//Max of all elements of linked list - Recursive
+int MaxR(struct Node *p){
+    int max = -2147483648;
+    if (p==0)
+        return -2147483648;
+
+    max = MaxR(p->next);
+    if (max > p->data){
+        return max;
+    } else {
+        return p->data;
+    } 
+}
+
 int main(){
     int A[] = {3,5,7,10,15,8,12,20};
     create(A, 8);
-    Display(first);
-    RDisplay(first);
-    RDisplayRecursive(first);
-    printf("length is %d \n", CountR(first));
-    printf("Sum is %d \n", SumR(first));
+    // Display(first);
+    // RDisplay(first);
+    // RDisplayRecursive(first);
+    // printf("length is %d \n", CountR(first));
+    // printf("Sum is %d \n", SumR(first));
+
+    printf("Max is %d", MaxR(first));
 }
