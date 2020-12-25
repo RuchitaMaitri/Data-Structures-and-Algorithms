@@ -62,10 +62,38 @@ void Insert(struct Node *p, int index, int x){
     }
 }
 
+void SortedInsert(struct Node *p, int x){
+    struct Node *t, *q=NULL;
+
+    t=(struct Node *)malloc(sizeof(struct Node));
+    t-> data=x;
+    t->next = NULL;
+
+    if(first==NULL){
+        first = t;
+    } 
+    else {
+        while(p && p->data < x){
+            q = p;
+            p = p->next;
+        }
+        if(p==first){
+            t->next = first;
+            first = t;
+        }
+        else {
+            t->next = q->next;
+            q->next = t;
+        }
+    }
+}
+
 int main(){
-    int A[] = {3,5,7};
-    create(A, 3);
+    // int A[] = {3,5,7};
+    // create(A, 3);
    
-    Insert(first,0,10);
+    // Insert(first,0,10);
+    SortedInsert(first, 1);
+    SortedInsert(first,10);
     Display(first);
 }
