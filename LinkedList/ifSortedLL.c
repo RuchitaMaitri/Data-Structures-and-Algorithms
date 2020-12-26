@@ -43,11 +43,26 @@ int isSorted(struct Node *p){
     return 1;
 }
 
+void RemoveDuplicates(struct Node* p){
+    struct Node *q=first->next;
+    while(q!=NULL){
+        if(p->data != q->data){
+            p=q;
+            q=q->next;
+        } 
+        else{
+            p->next=q->next;
+            free(q);
+            q=p->next;
+        }
+    }
+}
+
 int main(){
-    int A[] = {3,5,7,2,15};
-    create(A, 5);
+    int A[] = {3,5,7,2,2,2,15,15,15};
+    create(A, 7);
+    RemoveDuplicates(first);
     Display(first);
-    printf("%d \n", isSorted(first));
 }
 
 
