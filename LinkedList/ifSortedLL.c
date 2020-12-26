@@ -58,6 +58,8 @@ void RemoveDuplicates(struct Node* p){
     }
 }
 
+
+
 int main(){
     int A[] = {3,5,7,2,2,2,15,15,15};
     create(A, 7);
