@@ -42,12 +42,36 @@ void SelectionSort(int A[], int n){
         swap(&A[i],&A[k]);
     }
 }
+
+int Partition(int A[], int l, int h){
+    int pivot=A[l];
+    int i=l;
+    int j=h;
+    do{
+        do{i++;}while(A[i]<=pivot);
+        do{j--;}while(A[j]>pivot);
+
+        if(i<j) swap(&A[i], &A[j]);
+    }while(i<j);
+    swap(&A[l], &A[j]);
+    return j;
+}
+
+void QuickSort(int A[], int l, int h){
+    int j;
+    if(l<h){
+        j=Partition(A,l,h);
+        QuickSort(A,l,j);
+        QuickSort(A,j+1,h);
+    }
+}
 int main(){
-    int A[]={3,7,9,10,6,5,12,4,11,2};
-    int n=10;
+    int A[]={3,7,9,10,6,5,12,4,11,2, 2147483647};
+    int n=11;
     // Bubble(A,10);
     // Insertion(A,10);
-    SelectionSort(A,10);
+    // SelectionSort(A,10);
+    QuickSort(A, 0, n-1);
     int i;
     for(i=0;i<10;i++){
         printf("%d ", A[i]);
